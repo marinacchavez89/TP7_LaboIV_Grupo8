@@ -9,6 +9,6 @@
 <body>
 
 	<h1>"Soy la página de inicio"</h1>
-
+<!-- A continuacion vamos a realizar los inputs -->
 </body>
 </html>
