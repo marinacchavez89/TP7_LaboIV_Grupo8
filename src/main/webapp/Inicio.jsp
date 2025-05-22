@@ -8,7 +8,16 @@
 </head>
 <body>
 
-	<h1>"Soy la página de inicio"</h1>
-<!-- A continuacion vamos a realizar los inputs -->
+
+<nav>
+<a href="Inicio.jsp"style="margin-right: 10px;">Inicio</a>
+<a href="AgregarSeguro.jsp"style="margin-right: 10px;">Agregar seguro </a> 
+<a href="ListarSeguros.jsp" >Listar seguros</a>
+</nav>
+
+	<h1>Soy la página de inicio</h1>
+
+
+
 </body>
 </html>
