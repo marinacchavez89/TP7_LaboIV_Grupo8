@@ -15,7 +15,7 @@
 <a href="ListarSeguros.jsp" >Listar seguros</a>
 </nav>
 
-	<h1>Soy la página de inicio</h1>
+	<h1>Soy la página inicio</h1>
 
 
 
