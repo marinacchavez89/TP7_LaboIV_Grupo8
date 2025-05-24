@@ -16,7 +16,7 @@
 
 		<h1>"Agregar seguros"</h1>
 
-  <form method="post" action="ProcesarAltaSeguro.jsp">
+  <form  action="servletAgregarSeguro" method="post">
     <p>
       <label for="idSeguro">Id Seguro:</label>
 <!--  seguro utilicemos id autogenerado -->
@@ -28,8 +28,8 @@
     </p>
 
     <p>
-      <label for="tipoSeguro">Tipo de seguro:</label>
-      <select id="tipoSeguro" name="tipoSeguro" required>
+      <label for="idTipo">Tipo de seguro:</label>
+      <select id="idTipo" name="idTipo" required>
         <option value="">-- selecciona --</option>
         <option value="1">Seguro de casas</option>
         <!-- Podemos agregar mas tipo de seguros segun sea necesario -->
@@ -44,9 +44,9 @@
 
 
     <p>
-      <label for="costoMaximo">Costo máximo asegurado:</label>
-      <input type="text" id="costoMaximo"
-             name="costoMaximo" required />
+      <label for="costAsegurado">Costo máximo asegurado:</label>
+      <input type="text" id="costoAsegurado"
+             name="costoAsegurado" required />
     </p>
     <p>
       <button type="submit">Aceptar</button>
