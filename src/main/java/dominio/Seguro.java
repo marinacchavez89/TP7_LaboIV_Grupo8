@@ -12,7 +12,7 @@ public class Seguro {
 			
 		}
 		
-			public Seguro(int idSeguro, String descripcion, int idTipo, float costoContratacion, float costoAsegurado) {
+		public Seguro(int idSeguro, String descripcion, int idTipo, float costoContratacion, float costoAsegurado) {
 		this.idSeguro = idSeguro;
 		this.descripcion = descripcion;
 		this.idTipo = idTipo;

@@ -7,31 +7,40 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-	public class TipoSeguroDao {
+public class TipoSeguroDao {
 
-		private static final String obtenerTodos = "SELECT idTipo, descripcion FROM tipoSeguros";
+    private static final String obtenerTodos = "SELECT idTipo, descripcion FROM tipoSeguros";
 
-		public List<TipoSeguro> obtenerTodos() {
-			List<TipoSeguro> lista = new ArrayList<>();
-			PreparedStatement statement;
-			ResultSet resultSet;
-			Connection conexion = Conexion.getConexion().getSQLConexion();
+    public List<TipoSeguro> obtenerTodos() {
+        List<TipoSeguro> lista = new ArrayList<>();
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
-			try {
-				statement = conexion.prepareStatement(obtenerTodos);
-				resultSet = statement.executeQuery();
+        try {
+            conexion = Conexion.getSQLConexion();
+            statement = conexion.prepareStatement(obtenerTodos);
+            resultSet = statement.executeQuery();
 
-				while (resultSet.next()) {
-					TipoSeguro tipo = new TipoSeguro();
-					tipo.setIdTipo(resultSet.getInt("idTipo"));
-					tipo.setDescripcion(resultSet.getString("descripcion"));
-					lista.add(tipo);
-				}
+            while (resultSet.next()) {
+                TipoSeguro tipo = new TipoSeguro();
+                tipo.setIdTipo(resultSet.getInt("idTipo"));
+                tipo.setDescripcion(resultSet.getString("descripcion"));
+                lista.add(tipo);
+            }
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return lista;
-		}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
+        return lista;
+    }
 }
