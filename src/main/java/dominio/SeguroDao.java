@@ -34,14 +34,31 @@ public class SeguroDao {
 	
     try {
        conexion.rollback();
-    } catch (SQLException e1) {
-        e.printStackTrace();
-    }
-}
+	    } catch (SQLException e1) {
+	        e.printStackTrace();
+	    }
+	}
 
 	
 	return agregar;
-}
+	}
+	
+	public int obtenerProximoId() {
+	    int proximoId = 1; // valor por defecto si no hay registros
+	    String sql = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'segurosgroup' AND TABLE_NAME = 'seguros'";
+	    try (Connection con = Conexion.getConexion().getSQLConexion();
+	         PreparedStatement ps = con.prepareStatement(sql);
+	         ResultSet rs = ps.executeQuery()) {
+	        if (rs.next()) {
+	            proximoId = rs.getInt("AUTO_INCREMENT");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return proximoId;
+	}
+	
+	
 }
 	
 	

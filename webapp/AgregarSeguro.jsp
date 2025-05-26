@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="dominio.TipoSeguro" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +12,31 @@
 	
 	<nav>
 	<a href="Inicio.jsp"style="margin-right: 10px;">Inicio</a>
-	<a href="AgregarSeguro.jsp"style="margin-right: 10px;">Agregar seguro </a> 
+	<a href="servletAgregarSeguro" style="margin-right: 10px;">Agregar seguro</a> <!-- // corregido para ir al servlet -->
 	<a href="ListarSeguros.jsp" >Listar seguros</a>
 	</nav>
 
-		<h1>"Agregar seguros"</h1>
+		<h1>Agregar seguros</h1>
+		<%
+		    if ("1".equals(request.getParameter("exito"))) {
+		%>
+		    <p style="color:green;">Seguro agregado correctamente.</p>
+		<%
+		    }
+		    if (request.getAttribute("error") != null) {
+		%>
+		    <p style="color:red;"><%= request.getAttribute("error") %></p>
+		<%
+		    }
+		%>
 
   <form  action="servletAgregarSeguro" method="post">
     <p>
       <label for="idSeguro">Id Seguro:</label>
-<!--  seguro utilicemos id autogenerado -->
+		
+  		<input type="text" id="idSeguro" name="idSeguro" 
+  		value="<%= request.getAttribute("proximoIdSeguro") != null ? request.getAttribute("proximoIdSeguro") : "" %>" readonly />
+		
     </p>
 
     <p>
@@ -30,10 +47,28 @@
     <p>
       <label for="idTipo">Tipo de seguro:</label>
       <select id="idTipo" name="idTipo" required>
-        <option value="">-- selecciona --</option>
-        <option value="1">Seguro de casas</option>
-        <!-- Podemos agregar mas tipo de seguros segun sea necesario -->
-      </select>
+      <%
+   // este bloque imprime los tipos de seguro que el servlet pasó
+        List<TipoSeguro> tipos = (List<TipoSeguro>) request.getAttribute("tiposSeguros");
+        if (tipos != null) {
+            for (TipoSeguro tipo : tipos) {
+    %>
+                <option value="<%= tipo.getIdTipo() %>"><%= tipo.getDescripcion() %></option>
+    <%
+            }
+        }
+        else {
+            %>
+                <option value="">No hay tipos disponibles</option>
+            <%
+              }
+    %>
+    </select><br><br>
+      
+        <!--<option value="">-- selecciona --</option> -->
+        <!--<option value="1">Seguro de casas</option> -->
+        
+      
     </p>
 
     <p>
@@ -44,7 +79,7 @@
 
 
     <p>
-      <label for="costAsegurado">Costo máximo asegurado:</label>
+      <label for="costoAsegurado">Costo máximo asegurado:</label>
       <input type="text" id="costoAsegurado"
              name="costoAsegurado" required />
     </p>

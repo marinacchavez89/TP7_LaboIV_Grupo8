@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import dominio.Seguro;
 import dominio.SeguroDao;
+import dominio.TipoSeguro;
+import dominio.TipoSeguroDao;
 
 
 /**
@@ -30,16 +33,26 @@ public class servletAgregarSeguro extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        TipoSeguroDao tipoSeguroDao = new TipoSeguroDao();
+        List<TipoSeguro> tipos = tipoSeguroDao.obtenerTodos();
+        request.setAttribute("tiposSeguros", tipos);
+
+        //  obtener próximo id de seguro y setearlo en el request
+        SeguroDao seguroDao = new SeguroDao();
+        int proximoId = seguroDao.obtenerProximoId();  // Método que vamos a crear abajo
+        request.setAttribute("proximoIdSeguro", proximoId);
+
+        request.getRequestDispatcher("AgregarSeguro.jsp").forward(request, response);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Entró en doPost AgregarSeguro");
 		// TODO Auto-generated method stub
 		String descripcion = request.getParameter("descripcion");
 	    int idTipo = Integer.parseInt(request.getParameter("idTipo")); 
@@ -62,7 +75,9 @@ public class servletAgregarSeguro extends HttpServlet {
 	        request.setAttribute("error", "Error al agregar");
 	        request.getRequestDispatcher("AgregarSeguro.jsp").forward(request, response);
 	    }
+	    
 	}
+	
 }
 
 

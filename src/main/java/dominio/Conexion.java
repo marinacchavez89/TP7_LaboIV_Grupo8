@@ -16,13 +16,12 @@ public class Conexion {
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			//pass: root / 1234 (mari)
-			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SegurosGroup","root","root");
+			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/segurosgroup","root","root");
 			this.connection.setAutoCommit(false);
 		}
 		catch(Exception e)
 		{	
-			JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.\nVerifique usuario, contraseña o estado del servidor.", "Error de conexión", JOptionPane.ERROR_MESSAGE);
-		    e.printStackTrace();
+			System.err.println("Error al conectar a la base de datos: " + e.getMessage());		    e.printStackTrace();
 		    System.exit(1); //  Cierra todo el programa
 		}
 	}
