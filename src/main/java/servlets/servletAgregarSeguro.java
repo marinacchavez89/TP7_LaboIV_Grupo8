@@ -69,11 +69,13 @@ public class servletAgregarSeguro extends HttpServlet {
 	    boolean agregado = seguroDao.agregarSeguro(seguro);
 
 	    if (agregado) {
-	        System.out.println("Seguro agregado");
-	        response.sendRedirect("AgregarSeguro.jsp?exito=1"); 
+	      
+	    	request.setAttribute("mensaje", "El seguro fue agregado correctamente.");
+	    	request.getRequestDispatcher("Exito.jsp").forward(request, response);
 	    } else {
-	        request.setAttribute("error", "Error al agregar");
-	        request.getRequestDispatcher("AgregarSeguro.jsp").forward(request, response);
+	      
+	    	request.setAttribute("error", "Error al agregar el seguro. Verificá los datos.");
+	    	request.getRequestDispatcher("Error.jsp").forward(request, response);
 	    }
 	    
 	}

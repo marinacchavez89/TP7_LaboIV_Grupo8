@@ -34,9 +34,11 @@
     <p>
       <label for="idSeguro">Id Seguro:</label>
 		
-  		<input type="text" id="idSeguro" name="idSeguro" 
-  		value="<%= request.getAttribute("proximoIdSeguro") != null ? request.getAttribute("proximoIdSeguro") : "" %>" readonly />
-		
+  		<label id="idSeguro" name="idSeguro" >
+  		<%= request.getAttribute("proximoIdSeguro") != null ? request.getAttribute("proximoIdSeguro") : "" %>
+  		</label>
+  		<input type="hidden" name="idSeguro" value="<%= request.getAttribute("proximoIdSeguro") != null ? request.getAttribute("proximoIdSeguro") : "" %>" />
+  		
     </p>
 
     <p>
