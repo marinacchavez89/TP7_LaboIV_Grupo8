@@ -14,7 +14,7 @@
 
 <p><%= request.getAttribute("mensaje") != null ? request.getAttribute("mensaje") : "Todo salió bien." %></p>
 
-<form action="AgregarSeguro.jsp">
+<form action="${pageContext.request.contextPath}/servletAgregarSeguro" method="get">
     <button type="submit">Volver</button>
 </form>
 
