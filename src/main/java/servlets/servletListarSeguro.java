@@ -32,7 +32,6 @@ public class servletListarSeguro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		SeguroDao sdao = new SeguroDao();
 		ArrayList<Seguro> lista = sdao.obtenerSeguros();
 		
@@ -46,8 +45,23 @@ public class servletListarSeguro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		
+		String accion = request.getParameter("accion");
+	    String tipo = request.getParameter("tipoSeguros");
+
+	    SeguroDao sdao = new SeguroDao();
+	    ArrayList<Seguro> lista;
+
+	    if ("Filtrar".equals(accion) && tipo != null && !tipo.isEmpty()) {
+	        lista = sdao.obtenerSegurosPorTipo(tipo);
+	    } else {
+	        lista = sdao.obtenerSeguros();
+	    }
+
+	    request.setAttribute("listaS", lista);
+	    RequestDispatcher rd = request.getRequestDispatcher("ListarSeguros.jsp");
+	    rd.forward(request, response);
 		
 	}
 

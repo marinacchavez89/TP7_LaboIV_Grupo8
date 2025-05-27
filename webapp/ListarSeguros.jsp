@@ -18,16 +18,17 @@
 
 	<h1>"Tipos de seguros de la base de datos"</h1>
 	
-	<form action = "servletListarSeguro" method = "post">
-	<label id="lblSeguro">Busqueda por tipo de Seguros:</label>
+	<form action="servletListarSeguro" method="post">
+	    <label for="tipoSeguros">Búsqueda por tipo de Seguros:</label>
+	    <select name="tipoSeguros">
+	        <option value="">-- Seleccionar --</option>
+	        <option>Seguro de casas</option>
+	        <option>Seguro de vida</option>
+	        <option>Seguro de motos</option>
+	    </select>
 	
-		<select name="tipoSeguros">
-			<option>Seguro de casas</option>
-			<option>Seguro de vida</option>
-			<option>Seguro de motos</option>
-		</select>
-	
-	<input type="submit" name="btnFiltrar" value="Filtrar" />
+	    <input type="submit" name="accion" value="Filtrar" />
+	    <input type="submit" name="accion" value="Limpiar" />
 	</form>
 	
 	<br> 

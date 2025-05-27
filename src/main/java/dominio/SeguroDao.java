@@ -119,6 +119,50 @@ public class SeguroDao {
 
         return lista;
     }
+    
+    public ArrayList<Seguro> obtenerSegurosPorTipo(String descripcionTipo) {
+        ArrayList<Seguro> lista = new ArrayList<>();
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        String consulta = "SELECT s.idSeguro, s.descripcion, ts.descripcion AS DescripcionTipo, "
+                        + "s.costoContratacion, s.costoAsegurado "
+                        + "FROM seguros s "
+                        + "JOIN tiposeguros ts ON s.idTipo = ts.idTipo "
+                        + "WHERE ts.descripcion = ? "
+                        + "ORDER BY s.idSeguro ASC";
+
+        try {
+            conexion = Conexion.getSQLConexion();
+            statement = conexion.prepareStatement(consulta);
+            statement.setString(1, descripcionTipo);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Seguro seguro = new Seguro();
+                seguro.setIdSeguro(rs.getInt("idSeguro"));
+                seguro.setDescripcion(rs.getString("descripcion"));
+                seguro.setDescripcionTipo(rs.getString("DescripcionTipo"));
+                seguro.setCostoContratacion(rs.getFloat("costoContratacion"));
+                seguro.setCostoAsegurado(rs.getFloat("costoAsegurado"));
+                lista.add(seguro);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (statement != null) statement.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return lista;
+    }
 
 }
 	
