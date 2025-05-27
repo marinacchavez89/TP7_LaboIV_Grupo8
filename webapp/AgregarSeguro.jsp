@@ -10,11 +10,11 @@
 </head>
 <body>
 	
-	<nav>
-	<a href="Inicio.jsp"style="margin-right: 10px;">Inicio</a>
-	<a href="servletAgregarSeguro" style="margin-right: 10px;">Agregar seguro</a> <!-- // corregido para ir al servlet -->
-	<a href="ListarSeguros.jsp" >Listar seguros</a>
-	</nav>
+<nav>
+<a href="Inicio.jsp"style="margin-right: 10px;">Inicio</a>
+<a href="servletAgregarSeguro" style="margin-right: 10px;">Agregar seguro</a> 
+<a href="servletListarSeguro" >Listar seguros</a>
+</nav>
 
 		<h1>Agregar seguros</h1>
 		<%
