@@ -67,23 +67,26 @@
     %>
     </select><br><br>
       
-        <!--<option value="">-- selecciona --</option> -->
-        <!--<option value="1">Seguro de casas</option> -->
-        
       
     </p>
 
     <p>
       <label for="costoContratacion">Costo contratación:</label>
-      <input type="text" id="costoContratacion"
-             name="costoContratacion" required />
+      <input type="number" id="costoContratacion"
+             name="costoContratacion"
+             min="0"
+             step="0.01"
+              required />
     </p>
 
 
     <p>
       <label for="costoAsegurado">Costo máximo asegurado:</label>
-      <input type="text" id="costoAsegurado"
-             name="costoAsegurado" required />
+      <input type="number" id="costoAsegurado"
+             name="costoAsegurado"
+             min="0"
+             step="0.01"
+              required />
     </p>
     <p>
       <button type="submit">Aceptar</button>

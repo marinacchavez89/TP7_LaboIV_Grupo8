@@ -18,7 +18,7 @@
 
 <p><%= request.getAttribute("error") != null ? request.getAttribute("error") : "Algo falló durante la operación." %></p>
 
-<form action="Inicio.jsp">
+<form action="AgregarSeguro.jsp">
     <button type="submit">Volver</button>
 </form>
 
