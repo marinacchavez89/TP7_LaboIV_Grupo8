@@ -14,7 +14,7 @@
  <!--<a href="AgregarSeguro.jsp"style="margin-right: 10px;">Agregar seguro </a> -->
 <a href="servletAgregarSeguro" style="margin-right: 10px;">Agregar seguro</a> <!-- // cambiado para pasar por el servlet -->
  
-<a href="ListarSeguros.jsp" >Listar seguros</a>
+<a href="servletListarSeguro" >Listar seguros</a>
 </nav>
 
 	<h1>Soy la página inicio</h1>

@@ -7,6 +7,7 @@ public class Seguro {
 		private int idTipo; 
 		private float costoContratacion;
 		private float costoAsegurado;
+		private String descripcionTipo;
 		
 		public Seguro() {
 			
@@ -58,5 +59,13 @@ public class Seguro {
 
 	public void setCostoAsegurado(float costoAsegurado) {
 		this.costoAsegurado = costoAsegurado;
+	}
+	
+	public String getDescripcionTipo() {
+		return descripcionTipo;
+	}
+
+	public void setDescripcionTipo(String descripcionTipo) {
+		this.descripcionTipo = descripcionTipo;
 	}
 }
