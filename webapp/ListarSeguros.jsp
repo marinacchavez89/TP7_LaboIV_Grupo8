@@ -10,11 +10,7 @@
 </head>
 <body>
 	
-<nav>
-<a href="Inicio.jsp"style="margin-right: 10px;">Inicio</a>
-<a href="servletAgregarSeguro" style="margin-right: 10px;">Agregar seguro</a> 
-<a href="servletListarSeguro" >Listar seguros</a>
-</nav>
+<jsp:include page="Menu.jsp" />
 
 	<h1>"Tipos de seguros de la base de datos"</h1>
 	
